@@ -5,16 +5,22 @@ import Spinner from '../spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
 
 export default class RandomChar extends Component {
-    constructor(){
-        super();
-        this.updateChar();
-    }
 
     gotService = new gotService();
+
     state = {
         char:{},
         loading: true,
         error: false
+    }
+    // Инетересная вещь функции цикла
+    componentDidMount(){
+        this.updateChar(); //запуск только после того как компонент отрисовался
+        this.timerId = setInterval(this.updateChar, 30000);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timerId); //запуск как только компонент удаляется
     }
 
     onCharLoaded = (char) =>{
@@ -28,7 +34,7 @@ export default class RandomChar extends Component {
         })
     }
 
-    updateChar(){
+    updateChar = () => {
         const id = Math.floor(Math.random()*140 + 25);
         // const id = 999999
         this.gotService.getCharacter(id)
