@@ -65,7 +65,7 @@ RandomChar.defaultProps={
 }
 
 RandomChar.propTypes={
-    interval: PropTypes.number()
+    interval: PropTypes.number
 }
 
 const View = ({char}) =>{
