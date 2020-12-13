@@ -5,6 +5,7 @@ import RandomChar from '../randomChar';
 import ErrorMessage from '../errorMessage/errorMessage';
 import {CharacterPage, BooksPage, HousesPage} from '../pages';
 import gotService from '../../services/gotService';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import './app.css';
 
@@ -39,25 +40,28 @@ export default class App extends Component {
         }
 
         return (
-            <> 
-                <Container>
-                    <Header />
-                </Container>
-                <Container>
-                    <Row>
-                        <Col lg={{size: 5, offset: 0}}>
-                            <button 
-                                className="toggle-btn"
-                                onClick={this.toggleRandomChar}>Toggle random character
-                            </button>
-                            {char}
-                        </Col>
-                    </Row>
-                    <CharacterPage/>
-                    <BooksPage/>
-                    <HousesPage/>
-                </Container>
-            </>
+            <Router>
+                <div className="app"> 
+                    <Container>
+                        <Header />
+                    </Container>
+                    <Container>
+                        <Row>
+                            <Col lg={{size: 5, offset: 0}}>
+                                <button 
+                                    className="toggle-btn"
+                                    onClick={this.toggleRandomChar}>Toggle random character
+                                </button>
+                                {char}
+                            </Col>
+                        </Row>
+
+                        <Route path='/characters' component={CharacterPage}/>
+                        <Route path='/books' component={BooksPage}/>
+                        <Route path='/houses' component={HousesPage}/>
+                    </Container>
+                </div>
+            </Router>
         );
     }
 };

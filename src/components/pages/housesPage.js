@@ -34,7 +34,7 @@ export default class HousesPage extends Component {
         const itemList = (
             <ItemList onItemSelected={this.onItemSelected}
                 getData={this.gotService.getAllHouses}
-                renderItem={({name, gender})=>`${name} (${gender})`}
+                renderItem={({name, region})=>`${name} (${region})`}
             />
         )
 
@@ -43,6 +43,8 @@ export default class HousesPage extends Component {
             getData={()=>this.gotService.getHouse(this.state.selectedHouse)}>
                 <Field field='region' label='Region'/>
                 <Field field='words' label='Words'/>
+                <Field field='titles' label='Titles'/>
+                <Field field='ancestralWeapons' label='Ancestral Weapons'/>
             </ItemDetails>
         )
 
